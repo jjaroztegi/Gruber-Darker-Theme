@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!-- HTML5 doctype declaration -->
+<!-- Single-line HTML comment -->
+
+<!--
+    Multi-line HTML comment
+    for documentation or notes
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Character set meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Viewport meta tag for responsive design -->
+    <title>HTML Syntax Example</title>
+    <!-- Title of the document, displayed in browser tab -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Link to external CSS stylesheet -->
+    <style>
+      /* Internal CSS style block */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4; /* Background color */
+        color: #333; /* Text color */
+      }
+      .container {
+        width: 80%;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow effect */
+      }
+      h1 {
+        color: navy; /* Heading color */
+      }
+      p {
+        line-height: 1.6; /* Line height for paragraphs */
+      }
+      a {
+        color: darkblue; /* Link color */
+        text-decoration: none; /* Remove default underline from links */
+      }
+      a:hover {
+        text-decoration: underline; /* Add underline on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Container div with class attribute -->
+      <header>
+        <h1>Welcome to HTML Example Page</h1>
+        <!-- Main heading -->
+      </header>
+      <nav>
+        <!-- Navigation section -->
+        <ul>
+          <!-- Unordered list for navigation links -->
+          <li><a href="#">Home</a></li>
+          <!-- List item with anchor link -->
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <section>
+        <!-- Main content section -->
+        <h2>Introduction</h2>
+        <!-- Section heading -->
+        <p>
+          This is an example of HTML syntax to test VS Code theme highlighting.
+          It includes various HTML elements, attributes, inline styles, and
+          comments. This page demonstrates structure, text formatting, lists,
+          links, images, and form elements.
+        </p>
+        <p>You can see examples of:</p>
+        <ol>
+          <!-- Ordered list -->
+          <li>Headings (h1, h2)</li>
+          <li>Paragraphs (p)</li>
+          <li>Links (a)</li>
+          <li>Lists (ul, ol, li)</li>
+          <li>Images (img - see below)</li>
+          <li>Forms (form, input, label, button - see below)</li>
+          <li>Divs and Spans for structure (div, span)</li>
+          <li>Semantic tags (header, nav, section, article, aside, footer)</li>
+          <li>Attributes (class, id, href, src, alt, style, etc.)</li>
+          <li>Comments (single and multi-line)</li>
+          <li>Doctype declaration</li>
+          <li>Character encoding (UTF-8)</li>
+          <li>Viewport meta tag for responsiveness</li>
+          <li>External and Internal CSS styles</li>
+        </ol>
+
+        <h3>Image Example</h3>
+        <!-- Sub-heading -->
+        <img src="image.jpg" alt="Example Image" width="300" />
+        <!-- Image element with src and alt attributes -->
+
+        <h3>Form Example</h3>
+        <!-- Sub-heading -->
+        <form action="#" method="post">
+          <!-- Form element with action and method attributes -->
+          <label for="name">Name:</label>
+          <!-- Label for form input -->
+          <input type="text" id="name" name="user_name" /><br /><br />
+          <!-- Text input field with type, id, and name attributes -->
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="user_email" /><br /><br />
+          <!-- Email input type -->
+
+          <label for="message">Message:</label><br />
+          <textarea
+            id="message"
+            name="user_message"
+            rows="4"
+            cols="50"
+          ></textarea
+          ><br /><br />
+          <!-- Textarea for multi-line input -->
+
+          <button type="submit">Submit</button>
+          <!-- Submit button -->
+        </form>
+      </section>
+      <aside>
+        <!-- Aside content, often for sidebars -->
+        <h4>Sidebar</h4>
+        <p>
+          This is aside content. It can contain related links, ads, or
+          additional information.
+        </p>
+      </aside>
+      <footer>
+        <!-- Footer section -->
+        <p>© 2023 Example Website. All rights reserved.</p>
+        <!-- Copyright notice -->
+      </footer>
+    </div>
+    <script src="script.js"></script>
+    <!-- Link to external JavaScript file -->
+    <script>
+      // Inline JavaScript code block
+      console.log("Page loaded successfully!");
+    </script>
+  </body>
+</html>

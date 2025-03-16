@@ -1,0 +1,68 @@
+# YAML Example File - config.yaml
+# Single-line comment in YAML
+
+# Multi-line comment (achieved with multiple single-line comments)
+# This is another line of the multi-line comment
+# And yet another line
+
+application:
+  name: "Example Application"
+  version: 1.5
+  environment: production # String value
+  debug_mode: false       # Boolean value
+
+server:
+  host: "localhost"       # String
+  port: 8080              # Integer
+  timeout: 30             # Float (or Integer, YAML infers type)
+  ssl:
+    enabled: true         # Boolean, nested structure
+    certificate_path: "/etc/ssl/certs/app.crt"
+    private_key_path: "/etc/ssl/private/app.key"
+
+database:
+  type: "postgresql"      # String
+  host: "db.example.com"
+  port: 5432              # Integer
+  username: "dbuser"
+  password: "securepassword"
+  options:
+    - auto_reconnect: true  # Boolean in list
+    - max_connections: 100  # Integer in list
+
+logging:
+  level: INFO             # String
+  format: "%(asctime)s - %(levelname)s - %(message)s"
+  appenders:
+    - type: "file"        # String in list of mappings
+      path: "/var/log/app.log"
+      rotation: "daily"
+    - type: "console"     # Another mapping in the list
+      level: "DEBUG"
+
+features:
+  - feature_x_enabled: true  # List of mappings, each is a feature flag
+  - feature_y_enabled: false
+  - feature_z_version: "v2" # String value in feature flag
+
+authors:
+  - name: "John Doe"        # List of mappings, author details
+    email: "john.doe@example.com"
+  - name: "Jane Smith"
+    email: "jane.smith@example.com"
+    roles: ["admin", "editor"] # List of strings
+
+empty_value: null           # Null value
+pi_value: 3.14159           # Float value
+integer_number: 12345       # Integer value
+long_string: >              # Literal block scalar, multi-line string
+  This is a long string that spans
+  multiple lines. The indentation
+  is preserved.
+
+folded_string: >-           # Folded block scalar, multi-line string but folded into one line
+  This is a long string that
+  will be folded into a single
+  line. Newlines are replaced by spaces.
+
+# End of YAML example

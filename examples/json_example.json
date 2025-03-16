@@ -1,0 +1,56 @@
+{
+  // Single-line comment in JSON (unofficial, but some tools allow it)
+  /*
+   * Multi-line comment in JSON (also unofficial)
+   */
+
+  "appName": "JSON Example Config", // String key and value
+  "version": "1.2.0",
+  "debugMode": true, // Boolean value
+  "server": { // Nested JSON object
+    "host": "api.example.com",
+    "port": 443, // Number value
+    "protocol": "https",
+    "security": {
+      "sslEnabled": true,
+      "certificatePath": "/etc/ssl/certs/api.crt"
+    }
+  },
+  "database": {
+    "type": "mongodb",
+    "servers": [ // JSON array of strings
+      "db-server1.example.com:27017",
+      "db-server2.example.com:27017"
+    ],
+    "options": { // Nested object for database options
+      "retryWrites": true,
+      "w": "majority"
+    }
+  },
+  "logging": {
+    "level": "DEBUG",
+    "format": "%(asctime)s - %(levelname)s - %(message)s",
+    "appenders": [ // JSON array of objects
+      {
+        "type": "file",
+        "path": "/var/log/app.json.log",
+        "maxSizeMB": 100,
+        "backupCount": 5
+      },
+      {
+        "type": "console",
+        "level": "INFO"
+      }
+    ]
+  },
+  "featuresEnabled": [ // JSON array of booleans
+    true,
+    false,
+    true
+  ],
+  "piValue": 3.14159265359, // Floating point number
+  "maxUsers": 1000, // Integer number
+  "emptyValue": null, // Null value in JSON
+  "longDescription": "This is a long string value in JSON. It can contain multiple sentences and characters. JSON strings must be enclosed in double quotes.",
+  "specialCharacters": "!@#$%^&*()_+=-`~[]\\{}|;':\",./<>?" // String with special characters
+}
