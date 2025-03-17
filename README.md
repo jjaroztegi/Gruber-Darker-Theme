@@ -22,6 +22,8 @@ One essential setting is disabling bracket pair colorization, which aligns with 
 
 ## Code Screenshots
 
+Additional screenshots are available in the [img](img) folder.
+
 <div style="display: flex; justify-content: space-between;">
     <img src="img/showcase_c.png" alt="C Code Screenshot" style="height: 500px; width: 48%;">
     <img src="img/showcase_js.png" alt="JavaScript Code Screenshot" style="height: 500px; width: 48%;">
@@ -37,7 +39,7 @@ One essential setting is disabling bracket pair colorization, which aligns with 
 2. Go to the Extensions view (`Ctrl+Shift+X`).
 3. Search for **Gruber Darker Theme**.
 4. Click **Install**.
-5. Open the Command Palette (`Ctrl+Shift+P`), type **Color Theme**, and select **Gruber Darker Theme**.
+5. Open the Command Palette (`Ctrl+Shift+P`), type **Color Theme**, and select **Tsoding Gruber Darker**.
 
 ## Usage
 
@@ -45,7 +47,7 @@ To set the theme:
 
 1. Open the Command Palette (`Ctrl+Shift+P`).
 2. Choose **Preferences: Color Theme**.
-3. Select **Gruber Darker Theme** from the list.
+3. Select **Tsoding Gruber Darker** from the list.
 
 ## Configuration
 
