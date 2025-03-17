@@ -8,13 +8,17 @@ A port of the classic Gruber Darker Emacs theme, based on JoaoAJMatos's adaptati
 - **Optimized Readability:** Dark, subtle colors that reduce eye strain.
 - **Wide Language Support:** Works with multiple programming languages.
 
-## Installation
+## Configuration
 
-1. Open Visual Studio Code.
-2. Go to the Extensions view (`Ctrl+Shift+X`).
-3. Search for **Gruber Darker Theme**.
-4. Click **Install**.
-5. Open the Command Palette (`Ctrl+Shift+P`), type **Color Theme**, and select **Gruber Darker Theme**.
+One essential setting is disabling bracket pair colorization, which aligns with the theme's design. Additionally, modifying line highlighting and the activity bar's position is recommended.
+
+```json
+{
+  "editor.bracketPairColorization.enabled": false,
+  "editor.renderLineHighlight": "none",
+  "workbench.activityBar.location": "top"
+}
+```
 
 ## Code Screenshots
 
@@ -26,6 +30,14 @@ A port of the classic Gruber Darker Emacs theme, based on JoaoAJMatos's adaptati
 ## Editor Screenshot
 
 ![Gruber Darker Theme Showcase](img/editor.png)
+
+## Installation
+
+1. Open Visual Studio Code.
+2. Go to the Extensions view (`Ctrl+Shift+X`).
+3. Search for **Gruber Darker Theme**.
+4. Click **Install**.
+5. Open the Command Palette (`Ctrl+Shift+P`), type **Color Theme**, and select **Gruber Darker Theme**.
 
 ## Usage
 
