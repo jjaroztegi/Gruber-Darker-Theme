@@ -1,10 +1,16 @@
 # Change Log
 
-All notable changes to the "gruber-darker-theme" extension will be documented in this file.
+All notable changes to the "gruber-darker-theme" extension are documented here.
+
+## [1.0.1] - 2025-03-17
+
+### Changed
+
+- Updated the `README.md` file to include configuration instructions.
 
 ## [1.0.0] - 2025-03-17
 
-- Initial release
+- Initial release.
 
 ## [Unreleased]
 
