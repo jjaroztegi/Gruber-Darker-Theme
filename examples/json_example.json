@@ -1,56 +1,62 @@
 {
-  // Single-line comment in JSON (unofficial, but some tools allow it)
-  /*
-   * Multi-line comment in JSON (also unofficial)
-   */
-
-  "appName": "JSON Example Config", // String key and value
-  "version": "1.2.0",
-  "debugMode": true, // Boolean value
-  "server": { // Nested JSON object
-    "host": "api.example.com",
-    "port": 443, // Number value
-    "protocol": "https",
-    "security": {
-      "sslEnabled": true,
-      "certificatePath": "/etc/ssl/certs/api.crt"
-    }
-  },
-  "database": {
-    "type": "mongodb",
-    "servers": [ // JSON array of strings
-      "db-server1.example.com:27017",
-      "db-server2.example.com:27017"
+    "project": {
+        "name": "Task Manager",
+        "version": "1.0.0",
+        "description": "A simple task management system",
+        "author": {
+            "name": "John Doe",
+            "email": "john@example.com",
+            "roles": ["developer", "maintainer"]
+        }
+    },
+    "tasks": [
+        {
+            "id": 1,
+            "title": "Implement user authentication",
+            "status": "in-progress",
+            "priority": "high",
+            "tags": ["security", "backend"],
+            "assignee": {
+                "id": 101,
+                "name": "Alice Smith"
+            },
+            "dueDate": "2024-05-01",
+            "completed": false,
+            "subtasks": [
+                {
+                    "id": 101,
+                    "title": "Design auth flow",
+                    "completed": true
+                },
+                {
+                    "id": 102,
+                    "title": "Implement JWT",
+                    "completed": false
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Add dark mode support",
+            "status": "todo",
+            "priority": "medium",
+            "tags": ["ui", "frontend"],
+            "assignee": null,
+            "dueDate": "2024-06-01",
+            "completed": false,
+            "subtasks": []
+        }
     ],
-    "options": { // Nested object for database options
-      "retryWrites": true,
-      "w": "majority"
+    "settings": {
+        "notifications": {
+            "email": true,
+            "push": false,
+            "frequency": "daily"
+        },
+        "theme": {
+            "primary": "#007bff",
+            "secondary": "#6c757d",
+            "fontSize": 14
+        }
     }
-  },
-  "logging": {
-    "level": "DEBUG",
-    "format": "%(asctime)s - %(levelname)s - %(message)s",
-    "appenders": [ // JSON array of objects
-      {
-        "type": "file",
-        "path": "/var/log/app.json.log",
-        "maxSizeMB": 100,
-        "backupCount": 5
-      },
-      {
-        "type": "console",
-        "level": "INFO"
-      }
-    ]
-  },
-  "featuresEnabled": [ // JSON array of booleans
-    true,
-    false,
-    true
-  ],
-  "piValue": 3.14159265359, // Floating point number
-  "maxUsers": 1000, // Integer number
-  "emptyValue": null, // Null value in JSON
-  "longDescription": "This is a long string value in JSON. It can contain multiple sentences and characters. JSON strings must be enclosed in double quotes.",
-  "specialCharacters": "!@#$%^&*()_+=-`~[]\\{}|;':\",./<>?" // String with special characters
-}
+} 

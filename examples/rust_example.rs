@@ -1,122 +1,107 @@
-#!/usr/bin/env rust
+use std::time::{Duration, SystemTime};
+use tokio::time::sleep;
 
-// Single-line comment in Rust
-
-/*
- * Multi-line comment
- * for documentation
- */
-
-// Constant declaration (static constant)
-static MAX_ATTEMPTS: u32 = 5;
-
-// Function definition
-fn greet_user(name: &str) -> String {
-    format!("Hello, {}!", name) // String formatting, returns a String
+// Task status enum
+#[derive(Debug, Clone, Copy, PartialEq)]
+enum TaskStatus {
+    Pending,
+    Processing,
+    Completed,
 }
 
-// Struct definition
-struct Rectangle {
-    width: u32,
-    height: u32,
+// Task struct
+#[derive(Debug, Clone)]
+struct Task {
+    id: u32,
+    title: String,
+    status: TaskStatus,
+    completed_at: Option<SystemTime>,
 }
 
-// Implementation block for Rectangle struct (methods)
-impl Rectangle {
-    // Associated function (like static method, no 'self' parameter)
-    fn square(size: u32) -> Rectangle {
-        Rectangle { width: size, height: size }
+impl Task {
+    fn new(id: u32, title: String) -> Self {
+        Task {
+            id,
+            title,
+            status: TaskStatus::Pending,
+            completed_at: None,
+        }
     }
 
-    // Method (takes 'self' as first parameter)
-    fn area(&self) -> u32 {
-        self.width * self.height
-    }
-
-    // Mutable method (takes '&mut self')
-    fn set_width(&mut self, new_width: u32) {
-        self.width = new_width;
+    async fn process(&mut self) {
+        self.status = TaskStatus::Processing;
+        sleep(Duration::from_secs(1)).await; // Simulate work
+        self.status = TaskStatus::Completed;
+        self.completed_at = Some(SystemTime::now());
     }
 }
 
-// Enum definition
-enum Color {
-    Red,
-    Green,
-    Blue,
-    Rgb(u8, u8, u8), // Enum variant with tuple data
-    Cmyk { cyan: u8, magenta: u8, yellow: u8, black: u8 }, // Enum variant with struct data
+// Task manager
+struct TaskManager {
+    tasks: Vec<Task>,
+    next_id: u32,
 }
 
-// Trait definition (like interface in other languages)
-trait Shape {
-    fn perimeter(&self) -> f64;
-}
+impl TaskManager {
+    fn new() -> Self {
+        TaskManager {
+            tasks: Vec::new(),
+            next_id: 1,
+        }
+    }
 
-// Implement the Shape trait for Rectangle (need to convert u32 to f64 for perimeter calculation)
-impl Shape for Rectangle {
-    fn perimeter(&self) -> f64 {
-        (2 * (self.width + self.height)) as f64 // Type casting u32 to f64
+    fn add_task(&mut self, title: String) -> &Task {
+        let task = Task::new(self.next_id, title);
+        self.next_id += 1;
+        self.tasks.push(task);
+        self.tasks.last().unwrap()
+    }
+
+    async fn process_all_tasks(&mut self) {
+        let mut handles = vec![];
+        
+        for task in &mut self.tasks {
+            let task_clone = task.clone();
+            let handle = tokio::spawn(async move {
+                let mut task = task_clone;
+                task.process().await;
+                task
+            });
+            handles.push(handle);
+        }
+
+        for handle in handles {
+            if let Ok(processed_task) = handle.await {
+                if let Some(task) = self.tasks.iter_mut().find(|t| t.id == processed_task.id) {
+                    *task = processed_task;
+                }
+            }
+        }
+    }
+
+    fn get_tasks(&self) -> &[Task] {
+        &self.tasks
     }
 }
 
+#[tokio::main]
+async fn main() {
+    let mut manager = TaskManager::new();
 
-// Main function - entry point
-fn main() {
-    // Variable declarations and initializations (let bindings - immutable by default)
-    let message = "Hello, Rust!"; // Type inferred as &str
-    let mut count: i32 = 0;      // Mutable variable, explicitly typed as i32
-    let price: f64 = 99.99;       // f64 is 64-bit floating point
-    let is_active = true;         // Type inferred as bool
-    let numbers_vec = vec![10, 20, 30, 40, 50]; // Vector (resizable array)
-    let config_map = std::collections::HashMap::from([ // HashMap (dictionary)
-        ("theme", "light"),
-        ("version", "1.0"),
-    ]);
+    // Add tasks
+    manager.add_task("Learn Rust".to_string());
+    manager.add_task("Build an app".to_string());
 
-    // Output to console
-    println!("{}", message); // Using '{}' for Display formatting
-    println!("Count: {}", count);
+    // Process tasks concurrently
+    println!("Processing tasks...");
+    manager.process_all_tasks().await;
 
-    // Conditional statement (if-else if-else)
-    if count > 5 {
-        println!("Count is greater than 5");
-    } else if count == 0 {
-        println!("Count is zero");
-    } else {
-        println!("Count is between 1 and 5");
+    // Print final status
+    println!("\nFinal task status:");
+    for task in manager.get_tasks() {
+        println!("- {}: {:?}", task.title, task.status);
+        if let Some(completed_at) = task.completed_at {
+            println!("  Completed at: {:?}", completed_at);
+        }
     }
-
-    // Loop example (for loop iterating through a vector)
-    println!("Numbers in vector:");
-    for number in &numbers_vec { // Borrowing each element (no ownership transfer)
-        println!("{}", number);
-    }
-
-    // Function call
-    let greeting = greet_user("Rustacean");
-    println!("{}", greeting);
-
-    // Struct instantiation and method call
-    let mut rect1 = Rectangle { width: 30, height: 50 };
-    println!("Rectangle area: {}", rect1.area());
-    rect1.set_width(40); // Mutable method call
-    println!("Updated rectangle area after width change: {}", rect1.area());
-
-    // Associated function call
-    let square1 = Rectangle::square(25);
-    println!("Square area: {}", square1.area());
-
-    // Enum example
-    let color1 = Color::Rgb(255, 0, 0); // Red color using RGB variant
-    match color1 { // Match expression (like switch but more powerful)
-        Color::Red => println!("Color is Red"),
-        Color::Green => println!("Color is Green"),
-        Color::Blue => println!("Color is Blue"),
-        Color::Rgb(r, g, b) => println!("Color is RGB({}, {}, {})", r, g, b),
-        Color::Cmyk{cyan, magenta, yellow, black} => println!("Color is CMYK({}, {}, {}, {})", cyan, magenta, yellow, black),
-    }
-
-    // Trait example
-    println!("Rectangle perimeter: {}", rect1.perimeter());
-}
+} 

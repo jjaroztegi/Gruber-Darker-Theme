@@ -1,99 +1,106 @@
-#!/usr/bin/env swift
+import Foundation
 
-// Single-line comment in Swift
+// Task status enum
+enum TaskStatus: String {
+    case pending = "pending"
+    case processing = "processing"
+    case completed = "completed"
+}
 
-/*
- * Multi-line comment
- * for documentation
- */
-
-import Foundation // Import Foundation framework
-
-// Constant declaration
-let greetingMessage = "Hello, Swift!"
-
-// Class definition
-class Vehicle {
-    var numberOfWheels: Int
-    var color: String
-
-    // Initializer (Constructor)
-    init(wheels: Int, color: String) {
-        self.numberOfWheels = wheels
-        self.color = color
+// Property wrapper for task ID
+@propertyWrapper
+struct AutoIncrement {
+    private static var currentId = 0
+    
+    var wrappedValue: Int {
+        get {
+            AutoIncrement.currentId
+        }
+        set {
+            AutoIncrement.currentId = newValue
+        }
     }
-
-    // Method to describe vehicle
-    func describe() -> String {
-        return "A \(color) vehicle with \(numberOfWheels) wheels."
-    }
-
-    // Deinitializer (Destructor - automatically called when instance is deallocated)
-    deinit {
-        print("Vehicle object being deinitialized")
+    
+    init() {
+        AutoIncrement.currentId += 1
     }
 }
 
-// Function definition
-func calculateArea(length: Double, width: Double) -> Double {
-    return length * width
+// Task protocol
+protocol TaskProtocol {
+    var id: Int { get }
+    var title: String { get }
+    var status: TaskStatus { get set }
+    var completedAt: Date? { get set }
+    func process() async
 }
 
-// Structure definition (Structs are value types in Swift)
-struct Point {
-    var x: Double
-    var y: Double
-}
-
-// Enumeration definition (Enums are type-safe in Swift)
-enum Status: String {
-    case pending = "Pending"
-    case running = "Running"
-    case completed = "Completed"
-    case failed = "Failed"
-}
-
-// Main execution (Swift scripts can run top-level code directly)
-
-    // Variable declarations and initializations
-    var age = 30
-    let piValue = 3.14159
-    var userName = "SwiftCoder"
-    var isActive = true
-    var fruits = ["apple", "banana", "orange"]
-    var configDict = ["theme": "light", "fontSize": 14]
-
-    // Output to console
-    print(greetingMessage)
-    print("Age is \(age)")
-
-    // Conditional statement (if-else if-else)
-    if age > 40 {
-        print("Age is over 40")
-    } else if age == 30 {
-        print("Age is exactly 30")
-    } else {
-        print("Age is under 30")
+// Task class
+class Task: TaskProtocol {
+    @AutoIncrement var id: Int
+    let title: String
+    var status: TaskStatus
+    var completedAt: Date?
+    
+    init(title: String) {
+        self.title = title
+        self.status = .pending
     }
-
-    // Loop example (for-in loop)
-    print("Fruits:")
-    for fruit in fruits {
-        print(fruit)
+    
+    func process() async {
+        status = .processing
+        try? await Task.sleep(nanoseconds: 1_000_000_000) // 1 second
+        status = .completed
+        completedAt = Date()
     }
+}
 
-    // Function call
-    let area = calculateArea(length: 10.5, width: 5.0)
-    print("Area: \(area)")
+// Task manager
+actor TaskManager {
+    private var tasks: [Task] = []
+    
+    func addTask(title: String) -> Task {
+        let task = Task(title: title)
+        tasks.append(task)
+        return task
+    }
+    
+    func processAllTasks() async {
+        await withTaskGroup(of: Void.self) { group in
+            for task in tasks {
+                group.addTask {
+                    await task.process()
+                }
+            }
+        }
+    }
+    
+    func getTasks() -> [Task] {
+        tasks
+    }
+}
 
-    // Object instantiation and method call
-    let car = Vehicle(wheels: 4, color: "Red")
-    print(car.describe())
-
-    // Struct example
-    let origin = Point(x: 0.0, y: 0.0)
-    print("Origin point at x:\(origin.x), y:\(origin.y)")
-
-    // Enum example
-    let taskStatus = Status.running
-    print("Task status: \(taskStatus.rawValue)") // Accessing raw value of enum
+// Main function
+@main
+struct Main {
+    static func main() async {
+        let manager = TaskManager()
+        
+        // Add tasks
+        let task1 = await manager.addTask(title: "Learn Swift")
+        let task2 = await manager.addTask(title: "Build an app")
+        
+        // Process tasks concurrently
+        print("Processing tasks...")
+        await manager.processAllTasks()
+        
+        // Print final status
+        print("\nFinal task status:")
+        for task in await manager.getTasks() {
+            print("- \(task.title): \(task.status.rawValue)")
+            if let completedAt = task.completedAt {
+                print("  Completed at: \(completedAt)")
+            }
+        }
+    }
+} 

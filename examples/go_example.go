@@ -1,58 +1,59 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
-// Single-line comment in Go
-
-/*
- * Multi-line comment
- * for documentation
- */
-
-// Constant declaration
-const message string = "Hello, Go!"
-
-// Function definition
-func main() {
-	// Variable declarations and initializations
-	var count int = 100
-	var ratio float64 = 0.75
-	var name string = "Go User"
-	var isOpen bool = true
-	sliceOfInts := []int{10, 20, 30, 40, 50}
-	mapOfStrings := map[string]string{"key1": "value1", "key2": "value2"}
-
-	// Output to console
-	fmt.Println(message)
-	fmt.Printf("Count is: %d\n", count)
-
-	// Conditional statement (if-else-if)
-	if count > 100 {
-		fmt.Println("Count is greater than 100")
-	} else if count == 100 {
-		fmt.Println("Count is exactly 100")
-	} else {
-		fmt.Println("Count is less than 100")
-	}
-
-	// Loop example (for loop)
-	fmt.Println("Slice elements:")
-	for index, value := range sliceOfInts {
-		fmt.Printf("Index: %d, Value: %d\n", index, value)
-	}
-
-	// Map iteration
-	fmt.Println("Map entries:")
-	for key, value := range mapOfStrings {
-		fmt.Printf("Key: %s, Value: %s\n", key, value)
-	}
-
-	// Function call
-	product := multiply(count, 2)
-	fmt.Printf("Product of count and 2 is: %d\n", product)
+// Worker represents a task processor
+type Worker struct {
+	id      int
+	jobs    chan int
+	results chan int
 }
 
-// Another function definition
-func multiply(a int, b int) int {
-	return a * b
+// NewWorker creates a new worker
+func NewWorker(id int, jobs chan int, results chan int) *Worker {
+	return &Worker{
+		id:      id,
+		jobs:    jobs,
+		results: results,
+	}
+}
+
+// Start begins processing jobs
+func (w *Worker) Start() {
+	go func() {
+		for job := range w.jobs {
+			fmt.Printf("Worker %d processing job %d\n", w.id, job)
+			time.Sleep(100 * time.Millisecond) // Simulate work
+			w.results <- job * 2
+		}
+	}()
+}
+
+func main() {
+	const numJobs = 5
+	const numWorkers = 3
+
+	jobs := make(chan int, numJobs)
+	results := make(chan int, numJobs)
+
+	// Start workers
+	for i := 1; i <= numWorkers; i++ {
+		worker := NewWorker(i, jobs, results)
+		worker.Start()
+	}
+
+	// Send jobs
+	for i := 1; i <= numJobs; i++ {
+		jobs <- i
+	}
+	close(jobs)
+
+	// Collect results
+	for i := 1; i <= numJobs; i++ {
+		result := <-results
+		fmt.Printf("Result: %d\n", result)
+	}
 }

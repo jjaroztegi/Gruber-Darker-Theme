@@ -4,9 +4,9 @@ A port of the classic Gruber Darker Emacs theme, based on JoaoAJMatos's adaptati
 
 ## Features
 
-- **Faithful Adaptation:** Inspired by the original Gruber Darker theme for Emacs.
-- **Optimized Readability:** Dark, subtle colors that reduce eye strain.
-- **Wide Language Support:** Works with multiple programming languages.
+-   **Faithful Adaptation:** Inspired by the original Gruber Darker theme for Emacs.
+-   **Optimized Readability:** Dark, subtle colors that reduce eye strain.
+-   **Wide Language Support:** Works with multiple programming languages.
 
 ## Configuration
 
@@ -14,9 +14,9 @@ One essential setting is disabling bracket pair colorization, which aligns with 
 
 ```json
 {
-  "editor.bracketPairColorization.enabled": false,
-  "editor.renderLineHighlight": "none",
-  "workbench.activityBar.location": "top"
+    "editor.bracketPairColorization.enabled": false,
+    "editor.renderLineHighlight": "none",
+    "workbench.activityBar.location": "top"
 }
 ```
 
@@ -55,18 +55,18 @@ Customize theme settings in your `settings.json`. For example:
 
 ```json
 {
-  "workbench.colorTheme": "Gruber Darker Theme",
-  "editor.tokenColorCustomizations": {
-    "textMateRules": [
-      {
-        "scope": "entity.name.function.preprocessor.cpp",
-        "settings": {
-          "foreground": "#FF5733",
-          "fontStyle": "bold"
-        }
-      }
-    ]
-  }
+    "workbench.colorTheme": "Gruber Darker Theme",
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "entity.name.function.preprocessor.cpp",
+                "settings": {
+                    "foreground": "#FF5733",
+                    "fontStyle": "bold"
+                }
+            }
+        ]
+    }
 }
 ```
 
@@ -74,27 +74,27 @@ Customize theme settings in your `settings.json`. For example:
 
 Contributions are welcome! To contribute:
 
-- Fork the repository.
-- Create a new branch for your feature or fix.
-- Submit a pull request with your changes.
+-   Fork the repository.
+-   Create a new branch for your feature or fix.
+-   Submit a pull request with your changes.
 
 ## Credits
 
-- **John Gruber**  
-  Original designer of the Gruber Dark theme for BBEdit.  
-  [Visit Daring Fireball](https://daringfireball.net/projects/bbcolors/schemes/)
+-   **John Gruber**  
+    Original designer of the Gruber Dark theme for BBEdit.  
+    [Visit Daring Fireball](https://daringfireball.net/projects/bbcolors/schemes/)
 
-- **Jason Blevins**  
-  Developed the original Emacs version of Gruber Darker.  
-  [Visit Jason Blevins](https://jblevins.org/projects/emacs-color-themes/)
+-   **Jason Blevins**  
+    Developed the original Emacs version of Gruber Darker.  
+    [Visit Jason Blevins](https://jblevins.org/projects/emacs-color-themes/)
 
-- **Alexey Kutepov (rexim)**  
-  Adapted and extended the Emacs theme for modern use.  
-  [View gruber-darker-theme on GitHub](https://github.com/rexim/gruber-darker-theme)
+-   **Alexey Kutepov (rexim)**  
+    Adapted and extended the Emacs theme for modern use.  
+    [View gruber-darker-theme on GitHub](https://github.com/rexim/gruber-darker-theme)
 
-- **JoaoAJMatos**  
-  Provided the adaptation that inspired this VSCode port.  
-  [Tsoding-Color-Theme on the GitHub](https://github.com/JoaoAJMatos/Tsoding-Color-Theme)
+-   **JoaoAJMatos**  
+    Provided the adaptation that inspired this VSCode port.  
+    [Tsoding-Color-Theme on the GitHub](https://github.com/JoaoAJMatos/Tsoding-Color-Theme)
 
 ## License
 

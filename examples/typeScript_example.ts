@@ -1,86 +1,85 @@
-// This is a single-line comment in TypeScript - Gruber Darker theme
+// Task status type
+type TaskStatus = 'pending' | 'processing' | 'completed';
 
-/**
- * This is a multi-line comment in TypeScript, styled with Gruber Darker.
- * It describes the following example file, showcasing various TypeScript features.
- */
-
-// Define an interface
-interface Person {
-    firstName: string;
-    lastName: string;
-    age?: number; // Optional property
+// Task interface
+interface Task {
+    id: number;
+    title: string;
+    status: TaskStatus;
+    completedAt?: Date;
 }
 
-// Define an enum
-enum Color {
-    Red = "RED",
-    Green = "GREEN",
-    Blue = "BLUE",
-}
+// Generic task processor
+class TaskProcessor<T extends Task> {
+    private tasks: T[] = [];
+    private nextId = 1;
 
-// Class definition
-class Greeter {
-    private greeting: string; // Private member
-
-    constructor(message: string) {
-        this.greeting = message;
+    addTask(title: string): T {
+        const task = {
+            id: this.nextId++,
+            title,
+            status: 'pending'
+        } as T;
+        
+        this.tasks.push(task);
+        return task;
     }
 
-    // Method to greet a person
-    greetPerson(person: Person): string {
-        const fullName = `${person.firstName} ${person.lastName}`; // Template literal
-        let ageMessage = ""; // let variable
+    async processTask(task: T): Promise<void> {
+        task.status = 'processing';
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate work
+        task.status = 'completed';
+        task.completedAt = new Date();
+    }
 
-        if (person.age !== undefined) { // Conditional statement
-            ageMessage = ` and is ${person.age} years old`;
-        }
+    async processAllTasks(): Promise<void> {
+        const promises = this.tasks.map(task => this.processTask(task));
+        await Promise.all(promises);
+    }
 
-        console.log(`Color is: ${Color.Green}`); // Enum usage and console log
-
-        return `${this.greeting}, ${fullName}${ageMessage}!`; // Return string
+    getTasks(): T[] {
+        return [...this.tasks];
     }
 }
 
-// Function to process an array of numbers
-function processNumbers(numbers: number[]): number {
-    let sum: number = 0; // Explicit type annotation for sum
-
-    for (let i = 0; i < numbers.length; i++) { // For loop
-        sum += numbers[i]; // Addition assignment operator
-    }
-    return sum;
+// Extended task type with priority
+interface PrioritizedTask extends Task {
+    priority: number;
 }
 
-// Arrow function example
-const multiply = (a: number, b: number): number => {
-    return a * b; // Multiplication operator
-};
+// Task manager with prioritized tasks
+class PrioritizedTaskManager extends TaskProcessor<PrioritizedTask> {
+    addTask(title: string, priority: number): PrioritizedTask {
+        const task = super.addTask(title);
+        task.priority = priority;
+        return task;
+    }
 
+    getTasksByPriority(): PrioritizedTask[] {
+        return this.getTasks().sort((a, b) => b.priority - a.priority);
+    }
+}
 
 // Example usage
-const user: Person = { // Object literal implementing Person interface
-    firstName: "John",
-    lastName: "Doe",
-    age: 30,
-};
+async function main() {
+    const manager = new PrioritizedTaskManager();
 
-const anotherUser: Person = {
-    firstName: "Jane",
-    lastName: "Smith",
-};
+    // Add tasks with priorities
+    manager.addTask("Learn TypeScript", 1);
+    manager.addTask("Build an app", 2);
 
-const greeterInstance = new Greeter("Hello"); // Creating an instance of Greeter class
+    // Process tasks concurrently
+    console.log("Processing tasks...");
+    await manager.processAllTasks();
 
-const greetingMessage = greeterInstance.greetPerson(user);
-console.log(greetingMessage);
+    // Print final status
+    console.log("\nFinal task status (sorted by priority):");
+    for (const task of manager.getTasksByPriority()) {
+        console.log(`- ${task.title}: ${task.status}`);
+        if (task.completedAt) {
+            console.log(`  Completed at: ${task.completedAt}`);
+        }
+    }
+}
 
-const anotherGreeting = greeterInstance.greetPerson(anotherUser);
-console.log(anotherGreeting);
-
-const numbersArray: number[] = [1, 2, 3, 4, 5]; // Array of numbers
-const sumOfNumbers = processNumbers(numbersArray);
-console.log(`Sum of numbers: ${sumOfNumbers}`);
-
-const product = multiply(5, 10);
-console.log(`Product: ${product}`);
+main().catch(console.error); 

@@ -1,45 +1,73 @@
-# Markdown Example File - README.md
+# Project Documentation
 
-<!-- HTML comments are also valid in Markdown -->
-<!-- Example: -->
-<!-- <div>This is an HTML block in Markdown</div> -->
+## Overview
 
-# Project Title
-
-**Project Description**: A brief and engaging description of what your project does. This is the first thing users will see when they visit your project's repository.
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Examples](#examples)
-- [API Reference](#api-reference)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Introduction
-
-Provide a more detailed introduction to your project. Explain the problem it solves and why it's important. You can use **bold** and _italic_ text for emphasis.
-
-> This is a block quote. It can be used to highlight important information or quotes.
+This is a sample project that demonstrates various Markdown features.
 
 ## Features
 
-- Feature 1: Describe what feature 1 does.
-- Feature 2: Explain feature 2.
-- Feature 3: List all the key features of your project here.
+-   **Bold text** and _italic text_
+-   Code blocks and syntax highlighting
+-   Lists and tables
+-   Links and images
+-   Task lists
 
-  - You can also use nested lists.
-  - Like this one.
+## Code Examples
 
-## Getting Started
+### Python Function
 
-Instructions on how to get your project up and running on a local machine.
+```python
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+```
 
-### Prerequisites
+### JavaScript Class
 
-List any dependencies that need to be installed before running the project.
+```javascript
+class User {
+    constructor(name) {
+        this.name = name;
+    }
+
+    greet() {
+        return `Hello, ${this.name}!`;
+    }
+}
+```
+
+## Task List
+
+-   [x] Create documentation
+-   [x] Add code examples
+-   [ ] Deploy to production
+-   [ ] Monitor performance
+
+## Table Example
+
+| Feature        | Status         | Priority |
+| -------------- | -------------- | -------- |
+| Authentication | ✅ Done        | High     |
+| Database       | 🚧 In Progress | Medium   |
+| API            | ⏳ Planned     | Low      |
+
+## Links and References
+
+-   [GitHub Repository](https://github.com/example/project)
+-   [Issue Tracker](https://github.com/example/project/issues)
+
+## Blockquote
+
+> This is a blockquote that can be used for important notes or citations.
+
+## Horizontal Rule
+
+---
+
+## Image Example
+
+![Project Logo](https://example.com/logo.png)
+
+## Mathematical Equations
+
+When $a \ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$

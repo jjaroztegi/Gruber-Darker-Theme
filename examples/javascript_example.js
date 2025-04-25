@@ -1,87 +1,67 @@
-// Comment example
-import React, { useState, useEffect } from "react";
-
-/**
- * Multiline comment
- * For documentation
- */
-const API_KEY = "abc123"; // String constant
-
-// Class definition
-class Person {
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
-  }
-
-  greet() {
-    return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
-  }
-
-  static createAnonymous() {
-    return new Person("Anonymous", 0);
-  }
-}
-
-// Function with async/await
-async function fetchUserData(userId) {
-  try {
-    const response = await fetch(`https://api.example.com/users/${userId}`);
-    if (!response.ok) throw new Error("Network response was not ok");
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching user data:", error);
-    return null;
-  }
-}
-
-// Arrow function with object destructuring
-const processUser = ({ id, name, email }) => {
-  const formattedUser = {
-    userId: `user_${id}`,
-    displayName: name.toUpperCase(),
-    contact: email || "No email provided",
-  };
-
-  return formattedUser;
-};
-
-// Conditional and loops
-function analyzeNumbers(numbers) {
-  let sum = 0;
-  let max = Number.NEGATIVE_INFINITY;
-
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers[i];
-    if (numbers[i] > max) {
-      max = numbers[i];
+// Class representing a task with async processing
+class Task {
+    constructor(id, description) {
+        this.id = id;
+        this.description = description;
+        this.completed = false;
     }
-  }
 
-  const average = numbers.length > 0 ? sum / numbers.length : 0;
-
-  return { sum, average, max };
+    async process() {
+        // Simulate async work
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        this.completed = true;
+        return this;
+    }
 }
 
-// React component
-function UserProfile({ user, theme = "light" }) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [userData, setUserData] = useState(null);
+// Task manager using modern JavaScript features
+class TaskManager {
+    constructor() {
+        this.tasks = new Map();
+    }
 
-  useEffect(() => {
-    fetchUserData(user.id).then((data) => {
-      setUserData(data);
-      setIsLoading(false);
-    });
-  }, [user.id]);
+    addTask(description) {
+        const id = Date.now();
+        const task = new Task(id, description);
+        this.tasks.set(id, task);
+        return id;
+    }
 
-  if (isLoading) return <div>Loading...</div>;
+    async processTask(id) {
+        const task = this.tasks.get(id);
+        if (!task) {
+            throw new Error(`Task ${id} not found`);
+        }
+        return await task.process();
+    }
 
-  return (
-    <div className={`profile-card ${theme}`}>
-      <h2>{userData.name}</h2>
-      <p>{userData.bio}</p>
-    </div>
-  );
+    getTaskStatus(id) {
+        const task = this.tasks.get(id);
+        return task
+            ? {
+                  id: task.id,
+                  description: task.description,
+                  completed: task.completed,
+              }
+            : null;
+    }
 }
+
+// Example usage
+async function main() {
+    const manager = new TaskManager();
+
+    // Add some tasks
+    const task1Id = manager.addTask("Learn JavaScript");
+    const task2Id = manager.addTask("Build a website");
+
+    // Process tasks
+    console.log("Processing tasks...");
+    await Promise.all([manager.processTask(task1Id), manager.processTask(task2Id)]);
+
+    // Check status
+    console.log("Task 1 status:", manager.getTaskStatus(task1Id));
+    console.log("Task 2 status:", manager.getTaskStatus(task2Id));
+}
+
+main().catch(console.error);

@@ -1,28 +1,48 @@
 {
-  "name": "gruber-darker-theme",
-  "publisher": "jjaroztegi",
-  "displayName": "Gruber Darker Theme",
-  "description": "A VSCode port of the Gruber Darker Emacs theme, based on JoaoAJMatos's adaptation. It delivers a refined dark palette optimized for readability.",
-  "icon": "img/icon.jpg",
-  "version": "1.0.3",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jjaroztegi/Gruber-Darker-Theme"
-  },
-  "license": "MIT",
-  "engines": {
-    "vscode": "^1.43.0"
-  },
-  "categories": [
-    "Themes"
-  ],
-  "contributes": {
-    "themes": [
-      {
-        "label": "Tsoding Gruber Darker",
-        "uiTheme": "vs-dark",
-        "path": "./themes/Tsoding Gruber Darker-color-theme.json"
-      }
-    ]
-  }
+    "name": "gruber-darker-theme",
+    "displayName": "Gruber Darker Theme",
+    "description": "A VSCode port of the Gruber Darker Emacs theme, based on JoaoAJMatos's adaptation. It delivers a refined dark palette optimized for readability.",
+    "version": "1.1.0",
+    "publisher": "jjaroztegi",
+    "license": "MIT",
+    "icon": "img/icon.jpg",
+    "galleryBanner": {
+        "color": "#181818",
+        "theme": "dark"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jjaroztegi/Gruber-Darker-Theme"
+    },
+    "bugs": {
+        "url": "https://github.com/jjaroztegi/Gruber-Darker-Theme/issues"
+    },
+    "engines": {
+        "vscode": "^1.43.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "keywords": [
+        "dark",
+        "gruber darker",
+        "emacs",
+        "minimalist",
+        "rexim",
+        "tsoding",
+        "gruber",
+        "colorblind"
+    ],
+    "contributes": {
+        "themes": [
+            {
+                "label": "Tsoding Gruber Darker",
+                "uiTheme": "vs-dark",
+                "path": "./themes/Tsoding Gruber Darker-color-theme.json"
+            }
+        ]
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

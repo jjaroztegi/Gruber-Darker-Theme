@@ -1,58 +1,90 @@
 #!/bin/bash
-# Bash script example - Gruber Darker theme (comments)
 
-#-------------------------------------------------------------------------------
-# Script Name: process_files.sh
-# Description: This script processes files in a given directory.
-#              It iterates through each file and performs a simple action.
-#-------------------------------------------------------------------------------
+# Function to display usage information
+usage() {
+    echo "Usage: $0 [-d directory] [-e extension] [-v]"
+    echo "  -d: Directory to scan (default: current directory)"
+    echo "  -e: File extension to filter (default: all files)"
+    echo "  -v: Verbose output"
+    exit 1
+}
 
-# --- Configuration section ---
-# Define the directory to process
-directory="$1"  # Takes the directory as the first command line argument
+# Default values
+directory="."
+extension="*"
+verbose=false
 
-# Check if a directory argument is provided
-if [ -z "$directory" ]; then
-  echo "Error: Please provide a directory as an argument."
-  echo "Usage: ./process_files.sh <directory_path>"
-  exit 1 # Exit with error code
-fi
-
-# Check if the provided directory exists and is a directory
-if [ ! -d "$directory" ]; then
-  echo "Error: Directory '$directory' does not exist or is not a directory."
-  exit 1 # Exit with error code
-fi
-
-# --- Processing section ---
-echo "Processing files in directory: $directory"
-
-# Loop through each file in the specified directory
-find "$directory" -maxdepth 1 -type f -print0 | while IFS= read -r -d $'\0' file; do
-  # -maxdepth 1:  Only look in the current directory, not subdirectories.
-  # -type f:     Only process files (not directories).
-  # -print0:    Prints filenames separated by null characters (safer for filenames with spaces).
-  # IFS= read -r -d $'\0' file: Reads null-separated filenames into the 'file' variable.
-
-  echo "--- Processing file: '$file' ---"
-
-  # Example action: Print the filename and file size
-  filename=$(basename "$file") # Extract filename from path
-  filesize=$(stat -c %s "$file") # Get file size in bytes
-
-  echo "  Filename: $filename"
-  echo "  Size: $filesize bytes"
-
-  # Add your file processing logic here.
-  # For example, you could use commands like:
-  # grep, sed, awk, cat, etc.
-  # Example: grep "keyword" "$file"
-
-  echo "--- File processing complete ---"
-  echo "" # Empty line for separation
-
+# Parse command line arguments
+while getopts "d:e:vh" opt; do
+    case $opt in
+        d) directory="$OPTARG" ;;
+        e) extension="$OPTARG" ;;
+        v) verbose=true ;;
+        h) usage ;;
+        \?) usage ;;
+    esac
 done
 
-echo "File processing finished for directory: $directory"
+# Check if directory exists
+if [ ! -d "$directory" ]; then
+    echo "Error: Directory '$directory' does not exist"
+    exit 1
+fi
 
-exit 0 # Exit script successfully
+# Initialize arrays and counters
+declare -A file_stats
+declare -A extension_stats
+total_files=0
+total_lines=0
+
+# Process files
+echo "Scanning directory: $directory"
+echo "Looking for files with extension: $extension"
+echo "----------------------------------------"
+
+# Find and process files
+find "$directory" -type f -name "*.$extension" 2>/dev/null | while read -r file; do
+    if [ -f "$file" ]; then
+        # Get file statistics
+        lines=$(wc -l < "$file")
+        size=$(stat -f %z "$file" 2>/dev/null || stat -c %s "$file" 2>/dev/null)
+        ext="${file##*.}"
+        
+        # Update statistics
+        file_stats["$file"]=$lines
+        extension_stats["$ext"]=$((extension_stats["$ext"] + 1))
+        total_files=$((total_files + 1))
+        total_lines=$((total_lines + lines))
+        
+        # Display verbose information
+        if [ "$verbose" = true ]; then
+            echo "Processing: $file"
+            echo "  Lines: $lines"
+            echo "  Size: $size bytes"
+            echo "  Extension: $ext"
+            echo "----------------------------------------"
+        fi
+    fi
+done
+
+# Print summary
+echo -e "\nSummary:"
+echo "----------------------------------------"
+echo "Total files processed: $total_files"
+echo "Total lines: $total_lines"
+echo "Average lines per file: $((total_lines / total_files))"
+echo -e "\nFiles by extension:"
+for ext in "${!extension_stats[@]}"; do
+    echo "$ext: ${extension_stats[$ext]} files"
+done
+
+echo -e "\nTop 5 largest files by line count:"
+for file in "${!file_stats[@]}"; do
+    echo "$file: ${file_stats[$file]} lines"
+done | sort -rn -k2 | head -n 5
+
+# Check for errors
+if [ $total_files -eq 0 ]; then
+    echo "Warning: No files were processed"
+    exit 1
+fi 

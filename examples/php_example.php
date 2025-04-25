@@ -1,89 +1,83 @@
 <?php
-#!/usr/bin/env php
-<?php
-// Single-line comment in PHP
-# Another single-line comment style
 
-/*
- * Multi-line comment
- * for documentation
- */
+declare(strict_types=1);
 
-// Constant definition
-define("SITE_NAME", "Example PHP Site");
-
-// Function definition
-function greetUser($username) {
-    return "Hello, " . htmlspecialchars($username) . ", welcome to " . SITE_NAME . "!";
+// Interface for task operations
+interface TaskOperations {
+    public function process(): void;
+    public function getStatus(): string;
 }
 
-// Class definition
-class Product {
-    public $name;      // Public property
-    private $price;    // Private property
-    protected $category; // Protected property
-
-    // Constructor
-    public function __construct($name, $price, $category) {
-        $this->name = $name;
-        $this->price = $price;
-        $this->category = $category;
+// Abstract base class for tasks
+abstract class BaseTask implements TaskOperations {
+    protected string $title;
+    protected string $status = 'pending';
+    
+    public function __construct(string $title) {
+        $this->title = $title;
     }
-
-    // Method to get price
-    public function getPrice() {
-        return $this->price;
+    
+    public function getTitle(): string {
+        return $this->title;
     }
-
-    // Method to set price
-    public function setPrice($newPrice) {
-        $this->price = $newPrice;
-    }
-
-    // Static method example
-    public static function getDefaultCurrency() {
-        return "USD";
+    
+    public function getStatus(): string {
+        return $this->status;
     }
 }
 
-// Main execution block
-// In PHP, top-level code is common in script files
-    // Variable declarations and initializations
-    $count = 50;
-    $rate = 0.05;
-    $userName = "PHP User";
-    $isActive = true;
-    $items = array("Laptop", "Keyboard", "Mouse");
-    $config = ['db_host' => 'localhost', 'db_user' => 'root'];
-
-    // Output to browser/console
-    echo "<h1>" . SITE_NAME . "</h1>";
-    echo "<p>" . greetUser($userName) . "</p>";
-
-    // Conditional statement (if-elseif-else)
-    if ($count > 60) {
-        echo "<p>Count is greater than 60</p>";
-    } elseif ($count == 50) {
-        echo "<p>Count is exactly 50</p>";
-    } else {
-        echo "<p>Count is less than 50</p>";
+// Concrete task implementation
+class SimpleTask extends BaseTask {
+    public function process(): void {
+        $this->status = 'processing';
+        sleep(1); // Simulate work
+        $this->status = 'completed';
     }
+}
 
-    // Loop example (foreach loop)
-    echo "<p>Items:</p><ul>";
-    foreach ($items as $item) {
-        echo "<li>" . $item . "</li>";
+// Task manager using modern PHP features
+class TaskManager {
+    private array $tasks = [];
+    
+    public function addTask(string $title): SimpleTask {
+        $task = new SimpleTask($title);
+        $this->tasks[] = $task;
+        return $task;
     }
-    echo "</ul>";
+    
+    public function processTasks(): void {
+        foreach ($this->tasks as $task) {
+            $task->process();
+            echo sprintf(
+                "Task '%s' is now %s\n",
+                $task->getTitle(),
+                $task->getStatus()
+            );
+        }
+    }
+    
+    public function getTasks(): array {
+        return $this->tasks;
+    }
+}
 
-    // Function call
-    $greeting = greetUser($userName);
-    echo "<p>" . $greeting . "</p>";
+// Example usage
+$manager = new TaskManager();
 
-    // Object instantiation and method call
-    $product1 = new Product("Smartphone", 499.99, "Electronics");
-    echo "<p>Product: " . $product1->name . ", Price: " . $product1->getPrice() . Product::getDefaultCurrency() . "</p>";
-    $product1->setPrice(479.99);
-    echo "<p>Updated Price: " . $product1->getPrice() . Product::getDefaultCurrency() . "</p>";
+// Add tasks
+$task1 = $manager->addTask("Learn PHP");
+$task2 = $manager->addTask("Build a website");
 
-?>
+// Process tasks
+echo "Processing tasks...\n";
+$manager->processTasks();
+
+// Print final status
+echo "\nFinal task status:\n";
+foreach ($manager->getTasks() as $task) {
+    echo sprintf(
+        "- %s: %s\n",
+        $task->getTitle(),
+        $task->getStatus()
+    );
+} 
