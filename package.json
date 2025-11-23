@@ -2,7 +2,7 @@
     "name": "gruber-darker-theme",
     "displayName": "Gruber Darker Theme",
     "description": "A VSCode port of the Gruber Darker Emacs theme, based on JoaoAJMatos's adaptation. It delivers a refined dark palette optimized for readability.",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "publisher": "jjaroztegi",
     "license": "MIT",
     "icon": "img/icon.jpg",
@@ -50,7 +50,7 @@
     },
     "devDependencies": {
         "@types/node": "^16.11.33",
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.4"
-  }
+        "ts-node": "^10.7.0",
+        "typescript": "^4.6.4"
+    }
 }

@@ -1,7 +1,19 @@
-.vscode/**
-.vscode-test/**
-.gitignore
-examples/**
-img/**
+node_modules
+*.vsix
+
+# Source
+.github/
+.vscode/
+out/**/*.js.map
+examples/
+scripts/
+src/
+img/
 !img/icon.jpg
-vsc-extension-quickstart.md
+
+# Dev config files
+.eslintignore
+.gitignore
+nodemon.json
+renovate.json
+**/tsconfig*.json
