@@ -2,6 +2,13 @@
 
 All notable changes to the "gruber-darker-theme" extension are documented here.
 
+## [1.2.0] - 2025-11-23
+
+### Changed
+
+- Migrated the theme to a modular TypeScript architecture
+- Refactored token color definitions into granular layers (Base, UI, Language Overrides)
+
 ## [1.1.0] - 2025-04-25
 
 ### Changed
