@@ -10,8 +10,13 @@
 			"type": "extensionHost",
 			"request": "launch",
 			"args": [
+				// "--disable-extensions",
 				"--extensionDevelopmentPath=${workspaceFolder}"
-			]
+			],
+		"outFiles": [
+			"${workspaceFolder}/out/**/*.js"
+		],
+		"preLaunchTask": "npm: watch:ts"
 		}
 	]
 }
