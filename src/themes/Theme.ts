@@ -9,6 +9,7 @@ import { getLanguageOverrides } from "./data/language-overrides";
  * Theme class that generates the complete VS Code theme
  */
 export class Theme {
+  $schema = "vscode://schemas/color-theme";
   name = "Tsoding Gruber Darker";
   type = "dark";
   semanticHighlighting = true;
