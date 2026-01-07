@@ -18,7 +18,37 @@ export function getLanguageOverrides(colors: Colors, config: ThemeConfiguration)
     ...getGitOverrides(colors),
     ...getGoOverrides(colors),
     ...getRustOverrides(colors),
+    ...getTSJSOverrides(colors),
+    ...getShellOverrides(colors),
+    ...getSQLOverrides(colors),
+    ...getMarkdownOverrides(colors),
+    ...getCMakeOverrides(colors),
     ...getSpecialValueTokens(colors),
+  ];
+}
+
+function getCMakeOverrides(colors: Colors): TokenColor[] {
+  return [
+    {
+      name: "CMake Keywords",
+      scope: "keyword.other.cmake",
+      settings: { foreground: colors.yellow },
+    },
+    {
+      name: "CMake Functions/Commands",
+      scope: "entity.name.function.cmake",
+      settings: { foreground: colors.foreground },
+    },
+    {
+      name: "CMake Variables",
+      scope: "variable.other.cmake",
+      settings: { foreground: colors.foreground },
+    },
+    {
+      name: "CMake Strings",
+      scope: ["string.quoted.double.cmake", "string.quoted.single.cmake"],
+      settings: { foreground: colors.stringGreen },
+    },
   ];
 }
 
@@ -254,6 +284,71 @@ function getSpecialValueTokens(colors: Colors): TokenColor[] {
       name: "Language variables (this, self)",
       scope: "variable.language",
       settings: { foreground: colors.yellow },
+    },
+  ];
+}
+
+function getTSJSOverrides(colors: Colors): TokenColor[] {
+  return [
+    {
+      name: "JS/TS Function calls",
+      scope: ["entity.name.function.ts", "entity.name.function.js"],
+      settings: { foreground: colors.foreground },
+    },
+    {
+      name: "JS/TS Arrow function",
+      scope: "storage.type.function.arrow",
+      settings: { foreground: colors.yellow },
+    },
+    {
+      name: "JSX/TSX Component tags",
+      scope: ["support.class.component.tsx", "support.class.component.jsx"],
+      settings: { foreground: colors.nickel },
+    },
+  ];
+}
+
+function getShellOverrides(colors: Colors): TokenColor[] {
+  return [
+    {
+      name: "Shell variables",
+      scope: "variable.other.normal.shell",
+      settings: { foreground: colors.foreground },
+    },
+    {
+      name: "Shell commands",
+      scope: "support.function.builtin.shell",
+      settings: { foreground: colors.foreground },
+    },
+  ];
+}
+
+function getSQLOverrides(colors: Colors): TokenColor[] {
+  return [
+    {
+      name: "SQL Keywords",
+      scope: "keyword.other.sql",
+      settings: { foreground: colors.yellow },
+    },
+    {
+      name: "SQL Table names",
+      scope: "entity.name.function.sql",
+      settings: { foreground: colors.foreground },
+    },
+  ];
+}
+
+function getMarkdownOverrides(colors: Colors): TokenColor[] {
+  return [
+    {
+      name: "Markdown fenced code",
+      scope: "markup.fenced_code.block.markdown",
+      settings: { foreground: colors.foreground },
+    },
+    {
+      name: "Markdown link title",
+      scope: "string.other.link.title.markdown",
+      settings: { foreground: colors.stringGreen },
     },
   ];
 }

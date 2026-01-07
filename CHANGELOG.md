@@ -2,6 +2,15 @@
 
 All notable changes to the "gruber-darker-theme" extension are documented here.
 
+## [1.3.0] - 2026-01-07
+
+### Changed
+
+- CMake support
+- Enhanced semantic highlighting for improved LSP support
+- Language-specific overrides for TypeScript, JavaScript, Shell, SQL
+- Open VSX Registry publishing support
+
 ## [1.2.0] - 2025-11-23
 
 ### Changed

@@ -19,12 +19,64 @@
     },
     "macro": {
       "foreground": "#95a99f"
+    },
+    "function": {
+      "foreground": "#f4f4ff"
+    },
+    "method": {
+      "foreground": "#f4f4ff"
+    },
+    "property": {
+      "foreground": "#f4f4ff"
+    },
+    "variable": {
+      "foreground": "#f4f4ff"
+    },
+    "variable.readonly": {
+      "foreground": "#95a99f"
+    },
+    "variable.defaultLibrary": {
+      "foreground": "#b6b6b6"
+    },
+    "class": {
+      "foreground": "#b6b6b6"
+    },
+    "interface": {
+      "foreground": "#b6b6b6"
+    },
+    "enum": {
+      "foreground": "#b6b6b6"
+    },
+    "enumMember": {
+      "foreground": "#95a99f"
+    },
+    "struct": {
+      "foreground": "#b6b6b6"
+    },
+    "keyword": {
+      "foreground": "#ffdd33"
+    },
+    "modifier": {
+      "foreground": "#ffdd33"
+    },
+    "decorator": {
+      "foreground": "#b6b6b6"
+    },
+    "regexp": {
+      "foreground": "#73c936"
+    },
+    "operator": {
+      "foreground": "#f4f4ff"
     }
   },
   "tokenColors": [
     {
       "name": "Embedded code and markdown images",
-      "scope": ["meta.embedded", "source.groovy.embedded", "string meta.image.inline.markdown"],
+      "scope": [
+        "meta.embedded",
+        "source.groovy.embedded",
+        "string meta.image.inline.markdown"
+      ],
       "settings": {
         "foreground": "#f4f4ff"
       }
@@ -196,7 +248,10 @@
     },
     {
       "name": "Preprocessor directives",
-      "scope": ["meta.preprocessor", "entity.name.function.preprocessor"],
+      "scope": [
+        "meta.preprocessor",
+        "entity.name.function.preprocessor"
+      ],
       "settings": {
         "foreground": "#ffdd33"
       }
@@ -238,14 +293,20 @@
     },
     {
       "name": "Storage modifiers",
-      "scope": ["storage.modifier", "keyword.operator.noexcept"],
+      "scope": [
+        "storage.modifier",
+        "keyword.operator.noexcept"
+      ],
       "settings": {
         "foreground": "#ffdd33"
       }
     },
     {
       "name": "Strings",
-      "scope": ["string", "meta.embedded.assembly"],
+      "scope": [
+        "string",
+        "meta.embedded.assembly"
+      ],
       "settings": {
         "foreground": "#73c936"
       }
@@ -284,7 +345,9 @@
     },
     {
       "name": "Reset JavaScript string interpolation expression",
-      "scope": ["meta.template.expression"],
+      "scope": [
+        "meta.template.expression"
+      ],
       "settings": {
         "foreground": "#f4f4ff"
       }
@@ -347,6 +410,62 @@
       }
     },
     {
+      "name": "Function declarations",
+      "scope": "entity.name.function",
+      "settings": {
+        "foreground": "#f4f4ff"
+      }
+    },
+    {
+      "name": "Function calls",
+      "scope": "meta.function-call",
+      "settings": {
+        "foreground": "#f4f4ff"
+      }
+    },
+    {
+      "name": "Method calls",
+      "scope": "entity.name.function.member",
+      "settings": {
+        "foreground": "#f4f4ff"
+      }
+    },
+    {
+      "name": "Support functions",
+      "scope": "support.function",
+      "settings": {
+        "foreground": "#f4f4ff"
+      }
+    },
+    {
+      "name": "Support types",
+      "scope": "support.type",
+      "settings": {
+        "foreground": "#b6b6b6"
+      }
+    },
+    {
+      "name": "Support classes",
+      "scope": "support.class",
+      "settings": {
+        "foreground": "#b6b6b6"
+      }
+    },
+    {
+      "name": "Object keys",
+      "scope": "meta.object-literal.key",
+      "settings": {
+        "foreground": "#f4f4ff"
+      }
+    },
+    {
+      "name": "Object property access",
+      "scope": "variable.other.property",
+      "settings": {
+        "foreground": "#f4f4ff"
+      }
+    },
+    {
       "name": "Types and annotations",
       "scope": [
         "entity.name.type",
@@ -382,14 +501,21 @@
     },
     {
       "name": "Zig Constants",
-      "scope": ["keyword.constant.bool.zig", "keyword.constant.default.zig"],
+      "scope": [
+        "keyword.constant.bool.zig",
+        "keyword.constant.default.zig"
+      ],
       "settings": {
         "foreground": "#95a99f"
       }
     },
     {
       "name": "Zig Types",
-      "scope": ["keyword.type.zig", "keyword.type.integer.zig", "keyword.type.c.zig"],
+      "scope": [
+        "keyword.type.zig",
+        "keyword.type.integer.zig",
+        "keyword.type.c.zig"
+      ],
       "settings": {
         "foreground": "#b6b6b6"
       }
@@ -447,14 +573,22 @@
     },
     {
       "name": "Python Magic/Decorators",
-      "scope": ["support.variable.magic.python", "support.function.magic.python", "meta.function.decorator.python"],
+      "scope": [
+        "support.variable.magic.python",
+        "support.function.magic.python",
+        "meta.function.decorator.python"
+      ],
       "settings": {
         "foreground": "#b6b6b6"
       }
     },
     {
       "name": "Java import and package identifiers",
-      "scope": ["storage.modifier.import.java", "variable.language.wildcard.java", "storage.modifier.package.java"],
+      "scope": [
+        "storage.modifier.import.java",
+        "variable.language.wildcard.java",
+        "storage.modifier.package.java"
+      ],
       "settings": {
         "foreground": "#e4e4ef"
       }
@@ -474,21 +608,30 @@
     },
     {
       "name": "C/C++ Preprocessor",
-      "scope": ["entity.name.function.preprocessor.c", "entity.name.function.preprocessor.cpp"],
+      "scope": [
+        "entity.name.function.preprocessor.c",
+        "entity.name.function.preprocessor.cpp"
+      ],
       "settings": {
         "foreground": "#e4e4ef"
       }
     },
     {
       "name": "C/C++ Arrays and Primitives",
-      "scope": ["storage.modifier.array.bracket.square.c", "storage.modifier.array.bracket.square.cpp"],
+      "scope": [
+        "storage.modifier.array.bracket.square.c",
+        "storage.modifier.array.bracket.square.cpp"
+      ],
       "settings": {
         "foreground": "#e4e4ef"
       }
     },
     {
       "name": "C/C++ Primitives",
-      "scope": ["storage.type.built-in.primitive.cpp", "storage.type.built-in.primitive.c"],
+      "scope": [
+        "storage.type.built-in.primitive.cpp",
+        "storage.type.built-in.primitive.c"
+      ],
       "settings": {
         "foreground": "#b6b6b6"
       }
@@ -516,14 +659,21 @@
     },
     {
       "name": "Specific Tag Names (HTML/XML/TOML)",
-      "scope": ["meta.tag.xml", "entity.name.tag.html", "meta.tag.table.toml"],
+      "scope": [
+        "meta.tag.xml",
+        "entity.name.tag.html",
+        "meta.tag.table.toml"
+      ],
       "settings": {
         "foreground": "#ffdd33"
       }
     },
     {
       "name": "PHP embedded sections",
-      "scope": ["punctuation.section.embedded.begin.php", "punctuation.section.embedded.end.php"],
+      "scope": [
+        "punctuation.section.embedded.begin.php",
+        "punctuation.section.embedded.end.php"
+      ],
       "settings": {
         "foreground": "#ffdd33"
       }
@@ -560,7 +710,10 @@
     },
     {
       "name": "Rust Result/Option",
-      "scope": ["entity.name.type.result", "entity.name.type.option"],
+      "scope": [
+        "entity.name.type.result",
+        "entity.name.type.option"
+      ],
       "settings": {
         "foreground": "#ffdd33"
       }
@@ -570,6 +723,106 @@
       "scope": "variable.other.metavariable.specifier",
       "settings": {
         "foreground": "#ffdd33"
+      }
+    },
+    {
+      "name": "JS/TS Function calls",
+      "scope": [
+        "entity.name.function.ts",
+        "entity.name.function.js"
+      ],
+      "settings": {
+        "foreground": "#f4f4ff"
+      }
+    },
+    {
+      "name": "JS/TS Arrow function",
+      "scope": "storage.type.function.arrow",
+      "settings": {
+        "foreground": "#ffdd33"
+      }
+    },
+    {
+      "name": "JSX/TSX Component tags",
+      "scope": [
+        "support.class.component.tsx",
+        "support.class.component.jsx"
+      ],
+      "settings": {
+        "foreground": "#b6b6b6"
+      }
+    },
+    {
+      "name": "Shell variables",
+      "scope": "variable.other.normal.shell",
+      "settings": {
+        "foreground": "#f4f4ff"
+      }
+    },
+    {
+      "name": "Shell commands",
+      "scope": "support.function.builtin.shell",
+      "settings": {
+        "foreground": "#f4f4ff"
+      }
+    },
+    {
+      "name": "SQL Keywords",
+      "scope": "keyword.other.sql",
+      "settings": {
+        "foreground": "#ffdd33"
+      }
+    },
+    {
+      "name": "SQL Table names",
+      "scope": "entity.name.function.sql",
+      "settings": {
+        "foreground": "#f4f4ff"
+      }
+    },
+    {
+      "name": "Markdown fenced code",
+      "scope": "markup.fenced_code.block.markdown",
+      "settings": {
+        "foreground": "#f4f4ff"
+      }
+    },
+    {
+      "name": "Markdown link title",
+      "scope": "string.other.link.title.markdown",
+      "settings": {
+        "foreground": "#73c936"
+      }
+    },
+    {
+      "name": "CMake Keywords",
+      "scope": "keyword.other.cmake",
+      "settings": {
+        "foreground": "#ffdd33"
+      }
+    },
+    {
+      "name": "CMake Functions/Commands",
+      "scope": "entity.name.function.cmake",
+      "settings": {
+        "foreground": "#f4f4ff"
+      }
+    },
+    {
+      "name": "CMake Variables",
+      "scope": "variable.other.cmake",
+      "settings": {
+        "foreground": "#f4f4ff"
+      }
+    },
+    {
+      "name": "CMake Strings",
+      "scope": [
+        "string.quoted.double.cmake",
+        "string.quoted.single.cmake"
+      ],
+      "settings": {
+        "foreground": "#73c936"
       }
     },
     {

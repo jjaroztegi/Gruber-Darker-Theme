@@ -444,7 +444,67 @@ export function getAllTokenColors(colors: Colors, config: ThemeConfiguration): T
     ...getStringInterpolationTokens(colors),
     ...getKeywordTokens(colors),
     ...getVariableTokens(colors),
+    ...getFunctionTokens(colors),
+    ...getSupportTokens(colors),
+    ...getObjectTokens(colors),
     ...getTypeTokens(colors),
     ...getInspectionTokens(colors),
   ];
 }
+
+function getFunctionTokens(colors: Colors): TokenColor[] {
+  return [
+    {
+      name: "Function declarations",
+      scope: "entity.name.function",
+      settings: { foreground: colors.foreground },
+    },
+    {
+      name: "Function calls",
+      scope: "meta.function-call",
+      settings: { foreground: colors.foreground },
+    },
+    {
+      name: "Method calls",
+      scope: "entity.name.function.member",
+      settings: { foreground: colors.foreground },
+    },
+  ];
+}
+
+function getSupportTokens(colors: Colors): TokenColor[] {
+  return [
+    {
+      name: "Support functions",
+      scope: "support.function",
+      settings: { foreground: colors.foreground },
+    },
+    {
+      name: "Support types",
+      scope: "support.type",
+      settings: { foreground: colors.nickel },
+    },
+    {
+      name: "Support classes",
+      scope: "support.class",
+      settings: { foreground: colors.nickel },
+    },
+  ];
+}
+
+function getObjectTokens(colors: Colors): TokenColor[] {
+  return [
+    {
+      name: "Object keys",
+      scope: "meta.object-literal.key",
+      settings: { foreground: colors.foreground },
+    },
+    {
+      name: "Object property access",
+      scope: "variable.other.property",
+      settings: { foreground: colors.foreground },
+    },
+  ];
+}
+
+
