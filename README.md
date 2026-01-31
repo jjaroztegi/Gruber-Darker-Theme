@@ -20,6 +20,18 @@ One essential setting is disabling bracket pair colorization, which aligns with 
 }
 ```
 
+## Vim Extension Compatibility
+
+If you use the [VSCodeVim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim) extension, add the following settings to your `settings.json` to ensure proper contrast for search highlights and yank animations:
+
+```json
+{
+    "vim.highlightedyank.color": "rgba(255, 255, 255, 0.1)",
+    "vim.searchMatchTextColor": "#0a0a0a",
+    "vim.searchHighlightTextColor": "#0a0a0a"
+}
+```
+
 ## Code Screenshots
 
 Additional screenshots are available in the [img](img) folder.
@@ -80,20 +92,20 @@ Contributions are welcome! To contribute:
 
 ## Credits
 
--   **John Gruber**  
-    Original designer of the Gruber Dark theme for BBEdit.  
+-   **John Gruber**
+    Original designer of the Gruber Dark theme for BBEdit.
     [Visit Daring Fireball](https://daringfireball.net/projects/bbcolors/schemes/)
 
--   **Jason Blevins**  
-    Developed the original Emacs version of Gruber Darker.  
+-   **Jason Blevins**
+    Developed the original Emacs version of Gruber Darker.
     [Visit Jason Blevins](https://jblevins.org/projects/emacs-color-themes/)
 
--   **Alexey Kutepov (rexim)**  
-    Adapted and extended the Emacs theme for modern use.  
+-   **Alexey Kutepov (rexim)**
+    Adapted and extended the Emacs theme for modern use.
     [View gruber-darker-theme on GitHub](https://github.com/rexim/gruber-darker-theme)
 
--   **JoaoAJMatos**  
-    Provided the adaptation that inspired this VSCode port.  
+-   **JoaoAJMatos**
+    Provided the adaptation that inspired this VSCode port.
     [Tsoding-Color-Theme on the GitHub](https://github.com/JoaoAJMatos/Tsoding-Color-Theme)
 
 ## License
