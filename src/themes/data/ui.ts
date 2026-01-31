@@ -41,6 +41,15 @@ export default (colors: Colors) => ({
   "editorWarning.background": colors.transparent,
   "editorWarning.foreground": colors.orange,
   "editorInfo.background": colors.transparent,
+  "editorInfo.foreground": colors.blue,
+
+  // Editor - Symbol & Range Highlighting
+  "editor.findRangeHighlightBackground": colors.transparent,
+
+  // Peek View & Search Editor
+  "peekViewEditor.matchHighlightBackground": colors.findHighlightBg,
+  "peekViewResult.matchHighlightBackground": colors.findHighlightBg,
+  "searchEditor.findMatchBackground": colors.findMatchBg,
 
   // Editor - Gutter & Lines
   "editorGutter.background": colors.background,
@@ -83,15 +92,35 @@ export default (colors: Colors) => ({
 
   // Sidebar
   "sideBar.background": colors.background,
+  "sideBar.border": colors.background,
 
   // Status Bar
   "statusBar.background": colors.uiBackground,
   "statusBar.noFolderBackground": colors.uiBackground,
   "statusBar.noFolderForeground": colors.white,
+  "statusBar.border": colors.uiBackground,
 
   // Title Bar
   "titleBar.activeBackground": colors.uiBackground,
   "titleBar.border": colors.uiBackground,
+
+  // Tabs
+  "tab.activeBorder": colors.yellow,
+  "tab.inactiveBackground": colors.background,
+  "tab.border": colors.transparent,
+  "editorGroupHeader.tabsBorder": colors.transparent,
+  "editorGroupHeader.border": colors.transparent,
+  "editorGroup.border": colors.uiBackground,
+
+  // Lists
+  "list.activeSelectionBackground": colors.selection,
+  "list.inactiveSelectionBackground": colors.selection,
+  "list.hoverBackground": colors.uiBackground,
+  "list.highlightForeground": colors.yellow,
+
+  // Pickers
+  "pickerGroup.border": colors.uiBackground,
+  "pickerGroup.foreground": colors.yellow,
 
   // Text Links
   "textLink.activeForeground": colors.blue,
