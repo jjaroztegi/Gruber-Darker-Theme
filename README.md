@@ -1,94 +1,60 @@
-# Gruber Darker VSCode Theme
+# Gruber Darker VS Code Theme
 
-A port of the classic Gruber Darker Emacs theme, based on JoaoAJMatos's adaptation. This theme delivers a refined dark palette optimized for readability in Visual Studio Code.
+A VS Code port of the classic Gruber Darker look, based on JoaoAJMatos's adaptation and tuned for readability and high-contrast.
 
-## Features
+## Preview
 
--   **Faithful Adaptation:** Inspired by the original Gruber Darker theme for Emacs.
--   **Optimized Readability:** Dark, subtle colors that reduce eye strain.
--   **Wide Language Support:** Works with multiple programming languages.
+![Workbench preview](img/editor.png)
 
-## Configuration
+| JavaScript | C |
+| --- | --- |
+| ![JavaScript preview](img/showcase_js.png) | ![C preview](img/showcase_c.png) |
 
-One essential setting is disabling bracket pair colorization, which aligns with the theme's design. Additionally, modifying line highlighting and the activity bar's position is recommended.
-
-```json
-{
-    "editor.bracketPairColorization.enabled": false,
-    "editor.renderLineHighlight": "none",
-    "workbench.activityBar.location": "top"
-}
-```
-
-## Vim Extension Compatibility
-
-If you use the [VSCodeVim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim) extension, add the following settings to your `settings.json` to ensure proper contrast for search highlights and yank animations:
-
-```json
-{
-    "vim.highlightedyank.color": "rgba(255, 255, 255, 0.1)",
-    "vim.searchMatchTextColor": "#0a0a0a",
-    "vim.searchHighlightTextColor": "#0a0a0a"
-}
-```
-
-## Code Screenshots
-
-Additional screenshots are available in the [img](img) folder.
-
-<div style="display: flex; justify-content: space-between;">
-    <img src="img/showcase_c.png" alt="C Code Screenshot" style="height: 500px; width: 48%;">
-    <img src="img/showcase_js.png" alt="JavaScript Code Screenshot" style="height: 500px; width: 48%;">
-</div>
-
-## Editor Screenshot
-
-![Gruber Darker Theme Showcase](img/editor.png)
+Additional language previews are available in [`img/`](img).
 
 ## Installation
 
 1. Open Visual Studio Code.
-2. Go to the Extensions view (`Ctrl+Shift+X`).
-3. Search for **Gruber Darker Theme**.
-4. Click **Install**.
-5. Open the Command Palette (`Ctrl+Shift+P`), type **Color Theme**, and select **Tsoding Gruber Darker**.
+2. Open Extensions with `Ctrl+Shift+X`.
+3. Search for `Gruber Darker Theme`.
+4. Install the extension.
+5. Run `Preferences: Color Theme` and pick `Tsoding Gruber Darker`.
 
-## Usage
+## Recommended Settings
 
-To set the theme:
-
-1. Open the Command Palette (`Ctrl+Shift+P`).
-2. Choose **Preferences: Color Theme**.
-3. Select **Tsoding Gruber Darker** from the list.
-
-## Configuration
-
-Customize theme settings in your `settings.json`. For example:
+These settings match the screenshots and fit the theme best:
 
 ```json
 {
-    "workbench.colorTheme": "Gruber Darker Theme",
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            {
-                "scope": "entity.name.function.preprocessor.cpp",
-                "settings": {
-                    "foreground": "#FF5733",
-                    "fontStyle": "bold"
-                }
-            }
-        ]
-    }
+  "editor.bracketPairColorization.enabled": false,
+  "editor.renderLineHighlight": "none",
+  "workbench.activityBar.location": "top"
 }
 ```
 
-## Contributing
+If you use [VSCodeVim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim), these overrides keep search and yank highlights readable:
 
-Contributions are welcome! To contribute:
+```json
+{
+  "vim.highlightedyank.color": "rgba(255, 255, 255, 0.1)",
+  "vim.searchMatchTextColor": "#0a0a0a",
+  "vim.searchHighlightTextColor": "#0a0a0a"
+}
+```
 
--   Fork the repository.
--   Create a new branch for your feature or fix.
--   Submit a pull request with your changes.
+## Development
+
+```bash
+npm install
+npm run build
+npm run generate:assets
+npm run package
+```
+
+Publishing commands:
+
+- `npm run publish:vscode`
+- `npm run publish:ovsx`
 
 ## Credits
 
@@ -110,4 +76,4 @@ Contributions are welcome! To contribute:
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+Licensed under the [MIT License](LICENSE).

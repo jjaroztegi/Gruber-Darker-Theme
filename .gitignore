@@ -16,5 +16,4 @@ styles/
 !temp/.gitkeep
 flag.txt
 *.vsix
-
-examples/
+*.tsbuildinfo
