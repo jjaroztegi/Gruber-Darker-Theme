@@ -12,6 +12,9 @@ node_modules/
 out/
 styles/
 
+# Local docs and notes
+docs/
+
 # Auto-generated theme file
 !temp/.gitkeep
 flag.txt
