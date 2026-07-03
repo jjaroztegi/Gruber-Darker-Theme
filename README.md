@@ -44,12 +44,18 @@ If you use [VSCodeVim](https://marketplace.visualstudio.com/items?itemName=vscod
 
 ## Development
 
+Requires Node.js 20 or newer.
+
 ```bash
 npm install
-npm run build
-npm run generate:assets
+npm run check
+npm run preview
 npm run package
 ```
+
+`npm run check` rebuilds the theme JSON and validates the package/theme contract.
+`npm run preview` also regenerates the preview images from the files in [`examples/`](examples).
+`npm run qa:vscode` opens an isolated VS Code profile with representative language extensions for semantic-highlight screenshots.
 
 Publishing commands:
 

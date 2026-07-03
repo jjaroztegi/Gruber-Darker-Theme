@@ -1,0 +1,20 @@
+%YAML 1.2
+---
+YAML: YAML Ain't Markup Language
+
+What It Is:
+  YAML is a human-friendly data serialization
+  language for all programming languages.
+
+YAML Specifications:
+  - YAML 1.2:
+    - Revision 1.2.2  # Oct 1, 2021
+    - Revision 1.2.1  # Oct 1, 2009
+    - Revision 1.2.0  # Jul 21, 2009
+  - YAML 1.1         # Jan 18, 2005
+
+Projects:
+  - name: libyaml
+    language: C
+  - name: yaml-test-suite
+    language: Clojure
