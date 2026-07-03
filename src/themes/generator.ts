@@ -2,10 +2,10 @@ import { Theme } from "./Theme";
 import * as fs from "fs";
 import * as path from "path";
 
-const defaultSettings = JSON.parse(fs.readFileSync(path.join(__dirname, "../defaultConfig.json"), "utf8"));
+const defaultSettings = JSON.parse(fs.readFileSync(path.join(__dirname, "../defaultconfig.json"), "utf8"));
 
 export const generateTheme = {
-  // Use default settings from defaultConfig.json
+  // Use default settings from defaultconfig.json
   async default() {
     return Theme.init(defaultSettings);
   },

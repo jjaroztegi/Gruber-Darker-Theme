@@ -4,6 +4,7 @@ node_modules
 # Source
 .github/
 .vscode/
+docs/
 out/
 examples/
 scripts/
